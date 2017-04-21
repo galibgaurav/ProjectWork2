@@ -16,11 +16,13 @@ namespace ProjectWork.Web
 {
     public partial class Startup
     {
+        
+
         // Enable the application to use OAuthAuthorization. You can then secure your Web APIs
         static Startup()
         {
             PublicClientId = "web";
-
+           
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
@@ -30,6 +32,7 @@ namespace ProjectWork.Web
                 AllowInsecureHttp = true
             };
         }
+        //public static IdentityManagerFactory IdentityManagerFactory { get; set; }
 
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
@@ -39,10 +42,11 @@ namespace ProjectWork.Web
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
-
+            #region gaurav
+            //app.CreatePerOwinContext(ApplicationDbContext.Create);
+            //app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            //app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            #endregion
             // Enable the application to use a cookie to store information for the signed in user
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

@@ -1,5 +1,6 @@
 ﻿(function (app) {
     'use strict';
+    
     app.controller('rootCtrl', rootCtrl);
     rootCtrl.$inject = ['$scope', '$location', 'membershipService', '$rootScope'];
     function rootCtrl($scope, $location, membershipService, $rootScope) {
@@ -7,12 +8,14 @@
         $scope.userData = {};
         $scope.userData.displayUserInfo = displayUserInfo;
         $scope.logout = logout;
+        $scope.userData.userRole = [];
         function displayUserInfo()
         {
             $scope.userData.isUserLoggedIn = membershipService.isUserLoggedIn();
-
+            $scope.userData.userRole = membershipService.getUserRole();     
             if ($scope.userData.isUserLoggedIn) {
                 $scope.username = $rootScope.repository.loggedUser.username;
+                
             }
         }
         function logout()

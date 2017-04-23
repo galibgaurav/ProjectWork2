@@ -12,11 +12,12 @@
             register: register,
             saveCredentials: saveCredentials,
             removeCredentials: removeCredentials,
-            isUserLoggedIn: isUserLoggedIn
+            isUserLoggedIn: isUserLoggedIn,
+            getUserRole: getUserRole
         }
 
         function login(user, completed) {
-            debugger;
+            
             apiService.post('/ProjectWork/api/account/authenticate', user,
             completed,
             loginFailed);
@@ -27,14 +28,16 @@
             completed,
             registrationFailed);
         }
-
-        function saveCredentials(user) {
+        
+        function saveCredentials(user, userRoles) {
+            debugger;
             var membershipData = $base64.encode(user.username + ':' + user.password);
-
+           
             $rootScope.repository = {
                 loggedUser: {
                     username: user.username,
-                    authdata: membershipData
+                    authdata: membershipData,
+                    userRoles: userRoles
                 }
             };
 
@@ -44,7 +47,7 @@
 
         function removeCredentials() {
             $rootScope.repository = {};
-            $cookieStore.remove('repository');//bug2
+            $cookieStore.remove('repository');
             $http.defaults.headers.common.Authorization = '';
         };
 
@@ -58,7 +61,7 @@
         }
 
         function isUserLoggedIn() {
-            debugger;
+            
             if ($rootScope.repository === undefined)
             {
                 return false;
@@ -66,6 +69,18 @@
             else
             return $rootScope.repository.loggedUser != null;//bug1
             
+        }
+        function getUserRole() {
+            if ($rootScope.repository === undefined) {
+                debugger;
+                return false;
+            }
+            else
+                if ($rootScope.repository.loggedUser != undefined) {
+                    return $rootScope.repository.loggedUser.userRoles.indexOf('Admin') > -1;
+                }
+                else
+                    return false;
         }
 
         return service;

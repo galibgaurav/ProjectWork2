@@ -1,6 +1,6 @@
 ﻿(function (app) {
     'use strict';
-
+    
     app.controller('loginCtrl', loginCtrl);
 
     loginCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope', '$location'];
@@ -9,9 +9,10 @@
         $scope.pageClass = 'page-login';
         $scope.login = login;
         $scope.user = {};
+       
 
         function login() {
-            debugger;
+            
             membershipService.login($scope.user, loginCompleted)
         }
 
@@ -20,8 +21,10 @@
 
         }
         function loginCompleted(result) {
-            if (result.data.success) {
-                membershipService.saveCredentials($scope.user);
+           
+            if (result.status === 200) {
+                debugger;
+                membershipService.saveCredentials($scope.user, result.data.m_roles);
                 notificationService.displaySuccess('Hello ' + $scope.user.username);
                 $scope.userData.displayUserInfo();
                 if ($rootScope.previousState)

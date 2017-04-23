@@ -104,7 +104,7 @@ namespace ProjectWork.Web.Controllers
                     MembershipContext _userContext = _membershipService.ValidateUser(user.Username, user.Password);
                     if (_userContext.User != null)
                     {
-                        response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
+                        response = request.CreateResponse(HttpStatusCode.OK, _userContext.Principal, "application/json");
                     }
                     else
                     {

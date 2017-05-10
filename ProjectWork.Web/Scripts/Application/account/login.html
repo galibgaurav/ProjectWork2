@@ -2,9 +2,9 @@
     <form class="form-signin" role="form" novalidate angular-validator name="userLoginForm" angular-validator-submit="login()">
         <h3 class="form-signin-heading">Sign in</h3>
         <div class="form-group">
-            <label for="inputUsername" class="sr-only">Username</label>
-            <input type="text" id="inputUsername" name="inputUsername" class="form-control" ng-model="user.username" placeholder="Username"
-                   validate-on="blur" required required-message="'Username is required'">
+            <label for="inputUsername" class="sr-only">Email</label>
+            <input type="email" id="inputUsername" name="inputUsername" class="form-control" ng-model="user.username" placeholder="Email address"
+                   validate-on="blur" required required-message="'Email is required'">
         </div>
         <div class="form-group">
             <label for="inputPassword" class="sr-only">Password</label>

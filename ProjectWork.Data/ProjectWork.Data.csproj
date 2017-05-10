@@ -37,6 +37,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityConfiguration\ContactHistoryConfiguration.cs" />
+    <Compile Include="EntityConfiguration\ContactInfoConfiguration.cs" />
     <Compile Include="EntityConfiguration\EntityBaseConfiguration.cs" />
     <Compile Include="EntityConfiguration\RoleConfiguration.cs" />
     <Compile Include="EntityConfiguration\UserConfiguration.cs" />
@@ -56,14 +59,6 @@
     <Compile Include="Infrastructure\IDbFactory.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201704120435432_initial_migration.cs" />
-    <Compile Include="Migrations\201704120435432_initial_migration.Designer.cs">
-      <DependentUpon>201704120435432_initial_migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704151001257_initial_migration1.cs" />
-    <Compile Include="Migrations\201704151001257_initial_migration1.Designer.cs">
-      <DependentUpon>201704151001257_initial_migration1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EntityBaseRepository.cs" />
@@ -72,21 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ProjectWork.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectWork.Entities\ProjectWork.Entities.csproj">
       <Project>{681f0558-725a-4ec8-9132-87d51375465f}</Project>
       <Name>ProjectWork.Entities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704120435432_initial_migration.resx">
-      <DependentUpon>201704120435432_initial_migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704151001257_initial_migration1.resx">
-      <DependentUpon>201704151001257_initial_migration1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

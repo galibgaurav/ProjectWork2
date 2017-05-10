@@ -11,14 +11,23 @@
         $scope.user = {};
 
         function register() {
-            membershipService.register($scope.user, registerCompleted)
+            
+            var userRegistrationInfo = {
+                Email: $scope.user.username,
+                Password: $scope.user.password,
+                ConfirmPassword: $scope.user.confirmpassword
+            };
+            membershipService.register(userRegistrationInfo, registerCompleted)
         }
 
         function registerCompleted(result) {
+            
             if (result.data.success) {
+                
+                notificationService.displaySuccess('User ' + $scope.user.username + ' registered successfully');            
                 membershipService.saveCredentials($scope.user);
-                notificationService.displaySuccess('Hello ' + $scope.user.username);
                 $scope.userData.displayUserInfo();
+                debugger;
                 $location.path('/');
             }
             else {

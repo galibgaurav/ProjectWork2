@@ -12,7 +12,7 @@
         function displayUserInfo()
         {
             $scope.userData.isUserLoggedIn = membershipService.isUserLoggedIn();
-            $scope.userData.userRole = membershipService.getUserRole();     
+            //$scope.userData.userRole = membershipService.getUserRole();     
             if ($scope.userData.isUserLoggedIn) {
                 $scope.username = $rootScope.repository.loggedUser.username;
                 

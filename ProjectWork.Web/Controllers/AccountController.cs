@@ -19,53 +19,36 @@ using System.Net;
 
 namespace ProjectWork.Web.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    
     [RoutePrefix("api/Account")]
     public class AccountController : ApiControllerBase
     {
         private readonly IMembershipService _membershipService;
-
+        private ApplicationUserManager _userManager;
         public AccountController(IMembershipService membershipService, IEntityBaseRepository<Error> _errorsRepository,IUnitOfWork _unitOfWork)
             :base(_errorsRepository,_unitOfWork)
         {
             _membershipService = membershipService;
         }
 
-        //[AllowAnonymous]
-        //[Route("authenticate")]
-        //[HttpPost]
-        //public HttpResponseMessage Login(HttpRequestMessage request, LoginViewModel user)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        HttpResponseMessage response = null;
-        //        if (ModelState.IsValid)
-        //        {
-        //            MembershipContext _userContext = _membershipService.ValidateUser(user.Username, user.Password);
-        //            if (_userContext.User != null)
-        //            {
-        //                response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
-        //            }
-        //            else
-        //            {
-        //                response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
-        //            }
-
-        //        }
-        //        else
-        //        {
-        //            response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
-        //        }
-
-        //        return response;
-        //    });
-        //}
-
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+        
         [AllowAnonymous]
         [Route("register")]
         [HttpPost]
-        public HttpResponseMessage Register(HttpRequestMessage request,RegistrationViewModel user)
+        public HttpResponseMessage Register(HttpRequestMessage request, ProjectWork.Web.Models.RegisterViewModel model)
         {
+           
             return CreateHttpResponse(request, () => {
                 HttpResponseMessage response = null;
 
@@ -75,10 +58,16 @@ namespace ProjectWork.Web.Controllers
                 }
                 else
                 {
-                    Entities.User _user = _membershipService.CreateUser(user.Username, user.Email, user.Password, new int[] { 1 });
-
-                    if (_user != null)
+                    var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                    //Entities.User _user = _membershipService.CreateUser(user.Username, user.Email, user.Password, new int[] { 1 });
+                    IdentityResult result =  UserManager.Create(user, model.Password);
+                    if (result != null)
                     {
+                        if(result.Succeeded==true)
+                        {
+                            response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
+                        }
+                        else
                         response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
                     }
                     else
@@ -89,6 +78,7 @@ namespace ProjectWork.Web.Controllers
 
                 return response;
             });
+            
         }
 
         [AllowAnonymous]

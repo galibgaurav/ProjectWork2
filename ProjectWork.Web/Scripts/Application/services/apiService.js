@@ -11,11 +11,20 @@
             post: post
         };
 
-        function get(url, config, success, failure) {
-            return $http.get(url, config)
+        function get(url, success, failure) {
+
+            var accesstoken = sessionStorage.getItem('accessToken');
+            var headers = {};
+            if (headers) {
+                headers.Authorization = 'Bearer ' + accesstoken;
+            }
+
+            return $http.get(url, headers)
                     .then(function (result) {
+                        debugger;
                         success(result);
                     }, function (error) {
+                        debugger;
                         if (error.status == '401') {
                             notificationService.displayError('Authentication required.');
                             $rootScope.previousState = $location.path();
@@ -27,8 +36,15 @@
                     });
         }
 
-        function post(url, data, success, failure) {
-            return $http.post(url, data)
+       
+        function post(url, data, headers, success, failure) {
+
+            var accesstoken = sessionStorage.getItem('accessToken');
+
+            if (headers) {
+                headers.Authorization = 'Bearer ' + accesstoken;
+            }
+            return $http.post(url, data, headers)
                     .then(function (result) {
                         success(result);
                     }, function (error) {

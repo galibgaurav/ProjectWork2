@@ -15,7 +15,16 @@
         .when("/register", {
             templateUrl: "Scripts/Application/account/register.html",
                 controller: "registerCtrl"
-        }).otherwise({ redirectTo: "/" });
+        })
+        .when("/userHome", {
+            templateUrl: "Scripts/Application/account/userHome.html",
+            controller: "userHomeCtrl"
+        })
+        .when("/manageContacts",{
+            templateUrl: "Scripts/Application/ManageContacts/manageContacts.html",
+            controller: "manageContactsCtrl"
+        })
+        .otherwise({ redirectTo: "ProjectWork/" });
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: true,

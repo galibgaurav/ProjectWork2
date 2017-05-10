@@ -20,6 +20,8 @@ namespace ProjectWork.Data
         public IDbSet<User> UserSet { get; set; }
         public IDbSet<UserRole> UserRoleSet { get; set; }
         public IDbSet<Role> RoleSet { get; set; }
+        public DbSet<ContactInfo> ContactInfoSet { get; set; }
+        public IDbSet<ContactHistory> ContactHistorySet { get; set; }
         #endregion
 
         public virtual void Commit()
@@ -34,6 +36,9 @@ namespace ProjectWork.Data
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new UserRoleConfiguration());
             modelBuilder.Configurations.Add(new RoleConfiguration());
+            modelBuilder.Configurations.Add(new ContactHistoryConfiguration());
+            modelBuilder.Configurations.Add(new ContactInfoConfiguration());
+
         }
     }
 }

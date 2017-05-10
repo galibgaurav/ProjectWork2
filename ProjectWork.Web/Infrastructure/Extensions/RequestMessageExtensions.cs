@@ -12,9 +12,9 @@ namespace ProjectWork.Web
 {
     public static class RequestMessageExtensions
     {
-        internal static IMembershipService GetMembershipService(this HttpRequestMessage request) {
-            return request.GetService<IMembershipService>();
-        }
+        //internal static IMembershipService GetMembershipService(this HttpRequestMessage request) {
+        //    return request.GetService<IMembershipService>();
+        //}
 
         internal static IEntityBaseRepository<T> GetDataRepository<T>(this HttpRequestMessage request) where T : class, IEntityBase, new()
         {

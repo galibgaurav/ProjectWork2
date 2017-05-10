@@ -16,33 +16,38 @@
             getUserRole: getUserRole
         }
 
-        function login(user, completed) {
+       
+        function login(user,completed) {
             
-            apiService.post('/ProjectWork/api/account/authenticate', user,
+            apiService.post('/ProjectWork/TOKEN', $.param({ grant_type: 'password', username: user.username, password: user.password }),
+            { 'Content-Type': 'application/x-www-form-urlencoded' },
             completed,
             loginFailed);
         }
 
-        function register(user, completed) {
-            apiService.post('/ProjectWork/api/account/register', user,
+        function register(userRegistrationInfo, completed) {
+            debugger;
+            apiService.post('/ProjectWork/api/account/register', userRegistrationInfo,
+            null,
             completed,
             registrationFailed);
         }
         
-        function saveCredentials(user, userRoles) {
-            debugger;
+            //function saveCredentials(user, userRoles) {
+            function saveCredentials(user) {
+            //debugger;
             var membershipData = $base64.encode(user.username + ':' + user.password);
            
             $rootScope.repository = {
                 loggedUser: {
                     username: user.username,
                     authdata: membershipData,
-                    userRoles: userRoles
+                    //userRoles: userRoles
                 }
             };
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + membershipData;
-            $cookieStore.put('repository', $rootScope.repository);//bug3
+            $cookieStore.put('repository', $rootScope.repository);
         }
 
         function removeCredentials() {

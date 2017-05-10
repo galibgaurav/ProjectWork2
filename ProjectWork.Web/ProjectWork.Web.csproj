@@ -114,8 +114,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.1.0\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
@@ -167,6 +172,14 @@
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -260,8 +273,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactInfoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UserHomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,9 +284,17 @@
     <Compile Include="Infrastructure\Extensions\RequestMessageExtensions.cs" />
     <Compile Include="Infrastructure\MessageHandlers\ProjectWorkAuthHandler.cs" />
     <Compile Include="Infrastructure\Validators\AccountViewModelValidators.cs" />
+    <Compile Include="Infrastructure\Validators\ContactInfoModelValidators.cs" />
+    <Compile Include="Migrations\201704230750035_initial_migration.cs" />
+    <Compile Include="Migrations\201704230750035_initial_migration.Designer.cs">
+      <DependentUpon>201704230750035_initial_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ContactInfoModel.cs" />
     <Compile Include="Models\IdentityModels..cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -283,6 +305,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\background.jpg" />
+    <Content Include="Content\css\blank %282%29.gif" />
     <Content Include="Content\css\blank.gif" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -290,6 +313,7 @@
     <Content Include="Content\css\fancybox_overlay.png" />
     <Content Include="Content\css\fancybox_sprite.png" />
     <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\jquery.fancybox.css" />
     <Content Include="Content\css\loading-bar.css" />
     <Content Include="Content\css\morris.css" />
@@ -299,9 +323,14 @@
     <Content Include="Content\css\ui-bootstrap-csp.css" />
     <Content Include="Content\images\icon_facebook.png" />
     <Content Include="Content\images\icon_google.png" />
+    <Content Include="Content\responsive_rain.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Application\account\userHome.html" />
+    <Content Include="Scripts\Application\account\userHomeCtrl.js" />
+    <Content Include="Scripts\Application\ManageContacts\manageContacts.html" />
+    <Content Include="Scripts\Application\ManageContacts\manageContactsCtrl.js" />
     <Content Include="Scripts\ThirdParty\angular-cookies.js" />
     <Content Include="Scripts\ThirdParty\angular-cookies.min.js" />
     <Content Include="Scripts\Application\account\login.html" />
@@ -379,6 +408,34 @@
     <Content Include="Scripts\ThirdParty\angular-cookies.min.js.map" />
     <Content Include="Content\css\toastr.less" />
     <Content Include="Content\css\toastr.scss" />
+    <Content Include="Content\css\animated.less" />
+    <Content Include="Content\css\bordered-pulled.less" />
+    <Content Include="Content\css\core.less" />
+    <Content Include="Content\css\fixed-width.less" />
+    <Content Include="Content\css\font-awesome.less" />
+    <Content Include="Content\css\font-awesome.scss" />
+    <Content Include="Content\css\icons.less" />
+    <Content Include="Content\css\larger.less" />
+    <Content Include="Content\css\list.less" />
+    <Content Include="Content\css\mixins.less" />
+    <Content Include="Content\css\path.less" />
+    <Content Include="Content\css\rotated-flipped.less" />
+    <Content Include="Content\css\screen-reader.less" />
+    <Content Include="Content\css\stacked.less" />
+    <Content Include="Content\css\variables.less" />
+    <Content Include="Content\css\_animated.scss" />
+    <Content Include="Content\css\_bordered-pulled.scss" />
+    <Content Include="Content\css\_core.scss" />
+    <Content Include="Content\css\_fixed-width.scss" />
+    <Content Include="Content\css\_icons.scss" />
+    <Content Include="Content\css\_larger.scss" />
+    <Content Include="Content\css\_list.scss" />
+    <Content Include="Content\css\_mixins.scss" />
+    <Content Include="Content\css\_path.scss" />
+    <Content Include="Content\css\_rotated-flipped.scss" />
+    <Content Include="Content\css\_screen-reader.scss" />
+    <Content Include="Content\css\_stacked.scss" />
+    <Content Include="Content\css\_variables.scss" />
     <None Include="Scripts\ThirdParty\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ThirdParty\jquery-1.10.2.js" />
     <Content Include="Scripts\ThirdParty\jquery-1.10.2.min.js" />
@@ -462,6 +519,11 @@
       <Project>{91c019af-b39d-42dd-84cb-c709e70a2b18}</Project>
       <Name>ProjectWork.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704230750035_initial_migration.resx">
+      <DependentUpon>201704230750035_initial_migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

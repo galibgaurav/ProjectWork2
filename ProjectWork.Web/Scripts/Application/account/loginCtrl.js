@@ -12,25 +12,35 @@
        
 
         function login() {
-            
-            membershipService.login($scope.user, loginCompleted)
+            var userLogin = {
+                grant_type: 'password',
+                username: $scope.user.username,
+                password: $scope.user.password
+            };
+            membershipService.login(userLogin, loginCompleted)
         }
-
-        function externalLogin()
-        {
-
-        }
+       
         function loginCompleted(result) {
-           
+            debugger;
             if (result.status === 200) {
-                debugger;
-                membershipService.saveCredentials($scope.user, result.data.m_roles);
+                
+                $scope.user.username = result.data.userName;
+                //Store the token information in the SessionStorage
+                //So that it can be accessed for other views
+                sessionStorage.setItem('userName', result.data.userName);
+                sessionStorage.setItem('accessToken', result.data.access_token);
+                sessionStorage.setItem('refreshToken', result.data.refresh_token);
+                membershipService.saveCredentials($scope.user);
                 notificationService.displaySuccess('Hello ' + $scope.user.username);
                 $scope.userData.displayUserInfo();
                 if ($rootScope.previousState)
                     $location.path($rootScope.previousState);
-                else
-                    $location.path('/');
+                else{
+                    debugger;
+               
+                }
+                $location.path('/userHome');
+                  
             }
             else {
                 notificationService.displayError('Login failed. Try again.');

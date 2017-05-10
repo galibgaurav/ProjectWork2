@@ -55,7 +55,9 @@ namespace ProjectWork.Web
                 "~/Scripts/Application/home/rootCtrl.js",
                 "~/Scripts/Application/home/indexCtrl.js",
                 "~/Scripts/Application/account/loginCtrl.js",
-                "~/Scripts/Application/account/registerCtrl.js"
+                "~/Scripts/Application/account/registerCtrl.js",
+                "~/Scripts/Application/account/userHomeCtrl.js",
+                "~/Scripts/Application/ManageContacts/manageContactsCtrl.js"
                 ));
 
 

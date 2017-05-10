@@ -15,40 +15,18 @@ namespace ProjectWork.Data.Migrations
 
         protected override void Seed(ProjectWork.Data.ProjectWorkContext context)
         {
-            // create roles
-            context.RoleSet.AddOrUpdate(r => r.Name, GenerateRoles());
+            //  This method will be called after migrating to the latest version.
 
-            // username: chsakell, password: homecinema
-            context.UserSet.AddOrUpdate(u => u.Email, new User[]{
-                new User()
-                {
-                    Email="galibgaurav@gmail.com",
-                    Username="gaurav123",
-                    HashedPassword ="XwAQoiq84p1RUzhAyPfaMDKVgSwnn80NCtsE8dNv3XI=",
-                    Salt = "mNKLRbEFCH8y1xIyTXP4qA==",
-                    IsLocked = false,
-                    DateCreated = DateTime.Now
-                }
-            });
-
-            // // create user-admin for chsakell
-            context.UserRoleSet.AddOrUpdate(new UserRole[] {
-                new UserRole() {
-                    RoleId = 1, // admin
-                    UserId = 1  // chsakell
-                }
-            });
-        }
-        private Role[] GenerateRoles()
-        {
-            Role[] _roles = new Role[]{
-                new Role()
-                {
-                    Name="Admin"
-                }
-            };
-
-            return _roles;
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
     }
 }

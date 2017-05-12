@@ -9,7 +9,7 @@ namespace ProjectWork.Web.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ProjectWork.Web.Models.ApplicationDbContext context)

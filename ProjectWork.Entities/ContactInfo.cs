@@ -8,7 +8,7 @@ namespace ProjectWork.Entities
 {
     public class ContactInfo:IEntityBase
     {
-        ContactInfo()
+        public ContactInfo()
         {
             ContactHistory = new List<ContactHistory>();
         }
@@ -20,8 +20,8 @@ namespace ProjectWork.Entities
         public string AddressCorrespondance { get; set; }
         public string PrimaryContactNumber { get; set; }
         public string SecondaryContactNumber { get; set; }
-        public DateTime ContactedCreated { get; set; }
-        public DateTime ContactedUpdated { get; set; }
+        public DateTime? ContactedCreated { get; set; }
+        public DateTime? ContactedUpdated { get; set; }
 
         public virtual ICollection<ContactHistory> ContactHistory { get; set; }
         

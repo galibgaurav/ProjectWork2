@@ -1,5 +1,29 @@
-﻿    <div>
+﻿    <div class="container-fluid">
         <div>
-            <button class="btn-primary" type="button" ng-click="AddContacts()">Import Contacts</button>
+            <button class="btn btn-default pull-right mt-1" type="button" ng-click="AddContacts()" data-toggle="modal" data-target="#myModal">Import Contacts</button>
         </div>
+      
     </div>
+ 
+     <div id="myModal" class="modal fade" role="dialog">
+         <div class="modal-dialog">
+
+             <!-- Modal content-->
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">Add/Update Contacts</h4>
+                 </div>
+                 <div class="modal-body">
+                     <!--<label class="control-label"></label>-->
+                     <input id="input-1" type="file" class="file">
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                 </div>
+             </div>
+
+         </div>
+     
+    
+</div>

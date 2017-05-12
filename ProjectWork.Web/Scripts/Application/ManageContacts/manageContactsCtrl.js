@@ -3,20 +3,29 @@
     app.controller('manageContactsCtrl', manageContactsCtrl);
     manageContactsCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$rootScope', '$location', '$http'];
     function manageContactsCtrl($scope, apiService, notificationService, $rootScope, $location, $http) {
-        $scope.contactsData = {
-            "contactInfos":[{"name":"sridhar",
-                "primaryEmail":"sridhar@gmail.com",
-                "secondaryEmail":"",
-                "addressPermanent":"",
-                "addressCorrespondance":"",
-                "primaryContactNumber":"9902738900",
-                "secondaryContactNumber":"9902700000"
-                }]
-        };
-
-
+        $scope.contactsData = 
+           [{"Name":"sridhar",
+           "PrimaryEmail":"sridhar@gmail.com",
+           "SecondaryEmail":"",
+           "AddressPermanent":"",
+           "AddressCorrespondance":"",
+           "PrimaryContactNumber":"9902738900",
+           "SecondaryContactNumber":"9902700000"
+           },
+           {
+               "Name": "abcd",
+               "PrimaryEmail": "abcd@gmail.com",
+               "SecondaryEmail": "",
+               "AddressPermanent": "",
+               "AddressCorrespondance": "",
+               "PrimaryContactNumber": "8888738900",
+               "SecondaryContactNumber": "8888700000"
+           }];
+      
         //$scope.userHomeData.user = sessionStorage.getItem('userName');
         $scope.AddContacts = function () {
+            debugger;
+            
             var dataObj=$scope.contactsData;
 
             var accesstoken = sessionStorage.getItem('accessToken');

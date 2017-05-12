@@ -50,9 +50,11 @@ namespace ProjectWork.Web
             builder.RegisterType<EncryptionService>()
                 .As<IEncryptionService>()
                 .InstancePerRequest();
-
             builder.RegisterType<MembershipService>()
                 .As<IMembershipService>()
+                .InstancePerRequest();
+            builder.RegisterType<ContactInfoService>()
+                .As<IContactInfoService>()
                 .InstancePerRequest();
 
             // Generic Data Repository Factory

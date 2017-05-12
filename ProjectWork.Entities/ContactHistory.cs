@@ -11,6 +11,6 @@ namespace ProjectWork.Entities
         public int ID { get; set; }
         public string CallStatus { get; set; }
         public string CallRemark { get; set; }
-        public DateTime CallTime { get; set; }
+        public DateTime? CallTime { get; set; }
     }
 }

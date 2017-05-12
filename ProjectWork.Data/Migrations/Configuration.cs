@@ -10,7 +10,7 @@ namespace ProjectWork.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ProjectWork.Data.ProjectWorkContext context)

@@ -285,6 +285,7 @@
     <Compile Include="Infrastructure\MessageHandlers\ProjectWorkAuthHandler.cs" />
     <Compile Include="Infrastructure\Validators\AccountViewModelValidators.cs" />
     <Compile Include="Infrastructure\Validators\ContactInfoModelValidators.cs" />
+    <Compile Include="Mapping\AutoMapperConfiguration.cs" />
     <Compile Include="Migrations\201704230750035_initial_migration.cs" />
     <Compile Include="Migrations\201704230750035_initial_migration.Designer.cs">
       <DependentUpon>201704230750035_initial_migration.cs</DependentUpon>

@@ -13,10 +13,9 @@ namespace ProjectWork.Data
         
         public ContactHistoryConfiguration()
         {
-            Property(c => c.CallStatus).IsRequired();
-            Property(c => c.CallRemark).HasMaxLength(100);
-            Property(c => c.CallTime).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
-
+           
+            Property(c => c.communicationTime).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+            Property(c => c.userID).IsRequired().HasMaxLength(32);
            
         }
     }

@@ -22,6 +22,9 @@ namespace ProjectWork.Data
         public IDbSet<Role> RoleSet { get; set; }
         public DbSet<ContactInfo> ContactInfoSet { get; set; }
         public IDbSet<ContactHistory> ContactHistorySet { get; set; }
+        public DbSet<State> StateSet { get; set; }
+        public DbSet <CommunicationDetails> CommunicationDetailsSet { get; set; }
+        public DbSet <CallDetails> CallDetails { get; set; }
         #endregion
 
         public virtual void Commit()

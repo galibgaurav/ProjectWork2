@@ -11,6 +11,7 @@ namespace ProjectWork.Entities
         public ContactInfo()
         {
             ContactHistory = new List<ContactHistory>();
+
         }
         public int ID { get; set; }
         public string Name { get; set; }
@@ -24,6 +25,6 @@ namespace ProjectWork.Entities
         public DateTime? ContactedUpdated { get; set; }
 
         public virtual ICollection<ContactHistory> ContactHistory { get; set; }
-        
+        public virtual State state { get; set; }
     }
 }

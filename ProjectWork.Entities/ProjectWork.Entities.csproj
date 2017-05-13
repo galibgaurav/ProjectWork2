@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CallDetails.cs" />
     <Compile Include="CommunicationDetails.cs" />
+    <Compile Include="Schedule.cs" />
     <Compile Include="State.cs" />
     <Compile Include="ContactHistory.cs" />
     <Compile Include="ContactInfo.cs" />

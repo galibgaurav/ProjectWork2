@@ -7,9 +7,8 @@ using ProjectWork.Entities;
 
 namespace ProjectWork.Services
 {
-    public interface IContactInfoService
+    public interface ISchedulerService
     {
-       Task<string> AddContactInfo(ICollection<ContactInfo> ContactInfos);
-       Task<IEnumerable<ContactInfo>> GetContactInfo();
+        Task<bool> AddSchedule(IList<Schedule> ScheduleLst);
     }
 }

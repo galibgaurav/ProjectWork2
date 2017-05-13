@@ -22,6 +22,7 @@
                "SecondaryContactNumber": "8888700000"
            }];
       
+
         //$scope.userHomeData.user = sessionStorage.getItem('userName');
         $scope.AddContacts = function () {
             debugger;

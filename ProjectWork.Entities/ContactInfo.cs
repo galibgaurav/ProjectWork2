@@ -25,6 +25,6 @@ namespace ProjectWork.Entities
         public DateTime? ContactedUpdated { get; set; }
 
         public virtual ICollection<ContactHistory> ContactHistory { get; set; }
-        public virtual State state { get; set; }
+       
     }
 }

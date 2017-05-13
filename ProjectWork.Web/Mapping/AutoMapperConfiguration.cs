@@ -14,6 +14,7 @@ namespace ProjectWork.Web.Mapping
         {
             //Mapper.Initialize(x => x.AddProfile<ViewModelToEntitiesMappingProfile>());
             Mapper.Initialize(x=> { x.CreateMap<ContactInfoModel, ContactInfo>(); });
+            Mapper.Initialize(x => { x.CreateMap<StateViewModel, State>(); });
         }
 
     }

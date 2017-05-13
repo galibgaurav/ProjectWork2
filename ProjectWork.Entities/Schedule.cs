@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +8,12 @@ using System.Threading.Tasks;
 
 namespace ProjectWork.Entities
 {
-    public class State : IEntityBase
+    public class Schedule : IEntityBase
     {
-        //public State()
-        //{
-        //    ContactHistory = new List<>();
-        //}
         public int ID { get; set; }
-        public string StateName { get; set; }
+        public DateTime? ScheduleTime { get; set; }
+        public string UserID { get; set; }
         public int ContactInfoDetails_ID { get; set; }
+        //public virtual ContactInfo ContactInfoDetails { get; set; }
     }
-
-
 }

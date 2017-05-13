@@ -56,8 +56,13 @@ namespace ProjectWork.Web
             builder.RegisterType<ContactInfoService>()
                 .As<IContactInfoService>()
                 .InstancePerRequest();
-
-            // Generic Data Repository Factory
+            builder.RegisterType<ScheduleService>()
+                .As<ISchedulerService>()
+                .InstancePerRequest();
+            builder.RegisterType<StateService>()
+               .As<IStateService>()
+               .InstancePerRequest();
+            // Generic Data Repository Factory 
             //builder.RegisterType<DataRepositoryFactory>()
             //    .As<IDataRepositoryFactory>().InstancePerRequest();
 

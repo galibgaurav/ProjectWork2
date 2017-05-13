@@ -47,6 +47,22 @@ namespace ProjectWork.Web.Controllers
             return null;
             
         }
+        [Route("GetContactInfo")]
+        [ResponseType(typeof(IEnumerable<ContactInfo>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetContactInfo()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            //IList<ContactInfo> contactInfoList = new List<ContactInfo>();
+           
+            var result = await _contactInfoService.GetContactInfo();
+            return Ok(result);
+
+        }
+
         #region NotRequired
         //private ProjectWorkContext db = new ProjectWorkContext();
 
@@ -104,7 +120,7 @@ namespace ProjectWork.Web.Controllers
         //    return StatusCode(HttpStatusCode.NoContent);
         //}
 
-        
+
 
         //// DELETE: api/ContactInfoSet/5
         //[ResponseType(typeof(ContactInfo))]

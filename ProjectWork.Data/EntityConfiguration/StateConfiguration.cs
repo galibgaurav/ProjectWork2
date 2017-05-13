@@ -16,6 +16,8 @@ namespace ProjectWork.Data.EntityConfiguration
         {
             
             Property(c => c.StateName).IsRequired().HasMaxLength(20);
+            Property(c => c.ContactInfoDetails_ID).IsRequired();
+
           
         }
     }

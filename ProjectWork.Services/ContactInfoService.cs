@@ -28,27 +28,34 @@ namespace ProjectWork.Services
             {
                 foreach (ContactInfo item in ContactInfos)
                 {
-                    //ContactInfo ci = new ContactInfo();
-                    //ci.Name = item.Name;
-
-                    //ci.PrimaryEmail = item.PrimaryEmail;
-                    //ci.SecondaryEmail = item.SecondaryEmail;
-                    //ci.AddressPermanent = item.AddressPermanent;
-                    //ci.AddressCorrespondance = item.AddressCorrespondance;
-                    //ci.PrimaryContactNumber = item.PrimaryContactNumber;
-                    //ci.SecondaryContactNumber = item.SecondaryContactNumber;
                     _contactInfoRepository.Add(item);
                 }
             
             _unitOfWork.Commit();
             await Task.Delay(1000);
-             return "hai";
+             return "Success";
             }
             catch(Exception ex)
             {
                 throw;
             }
         }
-        
+
+        public async Task<IEnumerable<ContactInfo>> GetContactInfo()
+        {
+            try
+            {
+
+                var ContactInfo =_contactInfoRepository.GetAll();
+                await Task.Delay(500);
+                return ContactInfo;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
     }
 }

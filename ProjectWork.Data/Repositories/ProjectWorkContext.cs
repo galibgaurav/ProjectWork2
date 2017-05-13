@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectWork.Entities;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using ProjectWork.Data.EntityConfiguration;
 
 namespace ProjectWork.Data
 {
@@ -25,6 +26,7 @@ namespace ProjectWork.Data
         public DbSet<State> StateSet { get; set; }
         public DbSet <CommunicationDetails> CommunicationDetailsSet { get; set; }
         public DbSet <CallDetails> CallDetails { get; set; }
+        public DbSet <Schedule> Schedule { get; set; }
         #endregion
 
         public virtual void Commit()
@@ -41,6 +43,11 @@ namespace ProjectWork.Data
             modelBuilder.Configurations.Add(new RoleConfiguration());
             modelBuilder.Configurations.Add(new ContactHistoryConfiguration());
             modelBuilder.Configurations.Add(new ContactInfoConfiguration());
+            modelBuilder.Configurations.Add(new CallDetailsConfiguration());
+            modelBuilder.Configurations.Add(new CommunicationDetailsConfigurations());
+            modelBuilder.Configurations.Add(new SchduleConfiguration());
+            modelBuilder.Configurations.Add(new StateConfiguration());
+           
 
         }
     }

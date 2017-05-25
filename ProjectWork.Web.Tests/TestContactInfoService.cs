@@ -32,9 +32,11 @@ namespace ProjectWork.Web.Tests
         [Test]//test1 
         public async Task TestGetContactInfo()
         {
-            //moq is user for mocking next layer, here we are moking add method of EntityBaseRepository
+            //mock config-- moq is used for mocking next layer, here we are moking add method of EntityBaseRepository
             var _contactInfoRepository = new Mock<IEntityBaseRepository<ContactInfo>>();
-            _contactInfoRepository.Setup(x => x.Add(It.IsAny<ContactInfo>()));
+           
+            _contactInfoRepository.Setup(x => x.Add(It.IsAny<ContactInfo>())); //here add method returns void so we are not putting any return value, with mock setup;
+
             //crating sample input data
             ICollection<ContactInfo> contactLst = new List<ContactInfo>();
             ContactInfo contact = new ContactInfo();
@@ -70,7 +72,9 @@ namespace ProjectWork.Web.Tests
             //if any change is made on the AddContactInfo method than it can break the
             //the test cases, we will multiple positive and negative test so that 
             //any change in the code of AddContactInfo breaks the test case
-            //and we are hence force to update our test case code
+            //and we are hence force to update our test case code.
+            //Role of Moq- since we have mocked Add method , when call stack hits 
+            //Add method present in AddContactInfo it work as we defined in our mock config above; 
             Assert.AreEqual(result, "Success");
 
         }

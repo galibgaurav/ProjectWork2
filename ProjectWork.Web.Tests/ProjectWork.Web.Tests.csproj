@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,9 +33,38 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq, Version=4.7.10.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.10\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -92,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestContactInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -100,8 +131,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectWork.Data\ProjectWork.Data.csproj">
+      <Project>{734e6f60-d487-4807-9282-90c83366cb91}</Project>
+      <Name>ProjectWork.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectWork.Entities\ProjectWork.Entities.csproj">
+      <Project>{681f0558-725a-4ec8-9132-87d51375465f}</Project>
+      <Name>ProjectWork.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectWork.Services\ProjectWork.Services.csproj">
+      <Project>{91c019af-b39d-42dd-84cb-c709e70a2b18}</Project>
+      <Name>ProjectWork.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectWork.Web\ProjectWork.Web.csproj">
-      <Project>{B28F055E-6594-4FA6-8FEB-FAD5D5129C05}</Project>
+      <Project>{b28f055e-6594-4fa6-8feb-fad5d5129c05}</Project>
       <Name>ProjectWork.Web</Name>
     </ProjectReference>
   </ItemGroup>
